@@ -15,6 +15,17 @@ const thoughtSchema = new Schema(
       type: Date,
       default: format_time(Date.now),
     },
+
+    // How can username be linked or added to thougts??
+    username: [
+      {
+        type: Schema.Types.ObjectUsername,
+        ref: "user",
+        required: true,
+      },
+    ],
+
+    reactions: [reactionSchema],
   },
   // Here we are indicating that we want virtuals to be included with our response, overriding the default behavior
   {
@@ -24,6 +35,12 @@ const thoughtSchema = new Schema(
   }
 );
 
+reactionCount
+  .virtual("reactionCount")
+  // Getter
+  .get(function () {
+    return `${reactions.length}`;
+  });
 // Initialize our User model
 const Thought = model("thought", thoughtSchema);
 
