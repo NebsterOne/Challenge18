@@ -1,35 +1,30 @@
 const { Schema, model } = require("mongoose");
-const assignmentSchema = require("./User");
+const { format_time } = require("../utils/helper");
+const userSchema = require("./User");
 
 // Schema to create User model
-const thoughtSchema = new Schema({
-  thoughtText: {
-    type: String,
-    required: true,
-    min_length: 1,
-    max_length: 280,
+const thoughtSchema = new Schema(
+  {
+    thoughtText: {
+      type: String,
+      required: true,
+      min_length: 1,
+      max_length: 280,
+    },
+    createdAt: {
+      type: Date,
+      default: format_time(Date.now),
+    },
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-
   // Here we are indicating that we want virtuals to be included with our response, overriding the default behavior
-  toJSON: {
-    virtuals: true,
-  },
-  id: false,
-});
-
-// Create a virtual property `friendCoutns` that gets and sets the list of friends
-userSchema
-  .virtual("friendCount")
-  // Getter
-  .get(function () {
-    return `${friends.length}`;
-  });
+  {
+    toJSON: {
+      getters: true,
+    },
+  }
+);
 
 // Initialize our User model
-const User = model("user", userSchema);
+const Thought = model("thought", thoughtSchema);
 
-module.exports = User;
+module.exports = Thought;
