@@ -2,6 +2,35 @@ const { Schema, model } = require("mongoose");
 const { format_time } = require("../utils/helper");
 const userSchema = require("./User");
 
+const reactionSchema = new Schema(
+  {
+    reactionId: {
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId(),
+    },
+    reactionBody: {
+      type: String,
+      required: true,
+      max_length: 280,
+    },
+    username: {
+      type: String,
+      required: true,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: (timestamp) => format_time(timestamp),
+    },
+  },
+  {
+    toJSON: {
+      getters: true,
+    },
+    _id: false,
+  }
+);
+
 // Schema to create User model
 const thoughtSchema = new Schema(
   {
@@ -13,17 +42,15 @@ const thoughtSchema = new Schema(
     },
     createdAt: {
       type: Date,
-      default: format_time(Date.now),
+      default: Date.now,
+      get: (timestamp) => format_time(timestamp),
     },
 
     // How can username be linked or added to thougts??
-    username: [
-      {
-        type: Schema.Types.ObjectUsername,
-        ref: "user",
-        required: true,
-      },
-    ],
+    username: {
+      type: String,
+      required: true,
+    },
 
     reactions: [reactionSchema],
   },
@@ -31,7 +58,9 @@ const thoughtSchema = new Schema(
   {
     toJSON: {
       getters: true,
+      virtuals: true,
     },
+    id: false,
   }
 );
 
