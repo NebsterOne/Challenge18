@@ -5,7 +5,7 @@ module.exports = {
   getUsers(req, res) {
     User.find()
       .then(async (users) => {
-        return res.json(usersObj);
+        return res.json(users);
       })
       .catch((err) => {
         console.log(err);
@@ -34,7 +34,7 @@ module.exports = {
   // create a new user
   createUser(req, res) {
     User.create(req.body)
-      .then((user) => res.json(user))
+      .then((user) => res.json("user created successfully"))
       .catch((err) => res.status(500).json(err));
   },
 
@@ -73,7 +73,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   // Remove friend from a user
-  removeAssignment(req, res) {
+  removeFriend(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
       { $pull: { friends: req.params.friendId } },
