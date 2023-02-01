@@ -1,3 +1,11 @@
+## The Task
+
+MongoDB is a popular choice for many social networks due to its speed with large amounts of data and flexibility with unstructured data. Over the last part of this course, you’ll use several of the technologies that social networking platforms use in their full-stack applications. Because the foundation of these applications is data, it’s important that you understand how to build and structure the API first.
+
+The task requirements is to build an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. Express.js will be used for routing, a MongoDB database, and the Mongoose ODM. In addition to using the [Express.js](https://www.npmjs.com/package/express) and [Mongoose](https://www.npmjs.com/package/mongoose) packages, a JavaScript date library (free choice) or the native JavaScript `Date` object to format timestamps, may be used optionally.
+
+Own data needs to be created using Insomnia, after the API is created, as no seed data is provided.
+
 ## User Story
 
 ```md
