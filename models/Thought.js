@@ -1,6 +1,7 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
 const { format_time } = require("../utils/helper");
-const userSchema = require("./User");
+const { timeStamp, time } = require("console");
+// const userSchema = require("./User");
 
 const reactionSchema = new Schema(
   {
@@ -58,9 +59,9 @@ const thoughtSchema = new Schema(
   {
     toJSON: {
       getters: true,
-      virtuals: true,
+      // virtuals: true,
     },
-    id: false,
+    // id: false,
   }
 );
 
@@ -68,7 +69,7 @@ thoughtSchema
   .virtual("reactionCount")
   // Getter
   .get(function () {
-    return `${reactions.length}`;
+    return `${this.reactions.length}`;
   });
 // Initialize our User model
 const Thought = model("thought", thoughtSchema);

@@ -1,6 +1,6 @@
 const { User, Thought } = require("../models");
 
-// Get all users
+// Get all thoughts
 module.exports = {
   getThoughts(req, res) {
     Thought.find()
@@ -13,7 +13,7 @@ module.exports = {
       });
   },
 
-  // Get a single user
+  // Get a single thoughts
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .then((thought) =>
@@ -27,7 +27,7 @@ module.exports = {
       });
   },
 
-  // Create a new user
+  // Create a new thought
   createThought(req, res) {
     Thought.create(req.body)
       .then((thought) => {

@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const assignmentSchema = require("./Thought");
+// const assignmentSchema = require("./Thought");
 
 // Schema to create User model
 const userSchema = new Schema(
@@ -25,7 +25,7 @@ const userSchema = new Schema(
     friends: [
       {
         type: Schema.Types.ObjectId,
-        ref: "users",
+        ref: "user",
       },
     ],
   },
@@ -34,7 +34,7 @@ const userSchema = new Schema(
     toJSON: {
       virtuals: true,
     },
-    id: false,
+    // id: false,
   }
 );
 
