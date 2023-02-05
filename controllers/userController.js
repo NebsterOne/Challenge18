@@ -19,7 +19,7 @@ module.exports = {
       .select("-__v")
       .populate("friends")
       .populate("thoughts")
-      .then(async (user) =>
+      .then((user) =>
         !user
           ? res.status(404).json({ message: "No user with that ID" })
           : res.json(user)
