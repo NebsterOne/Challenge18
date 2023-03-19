@@ -1,7 +1,6 @@
 const { Schema, model, Types } = require("mongoose");
 const { format_time } = require("../utils/helper");
 const { timeStamp, time } = require("console");
-// const userSchema = require("./User");
 
 const reactionSchema = new Schema(
   {
@@ -28,7 +27,7 @@ const reactionSchema = new Schema(
     toJSON: {
       getters: true,
     },
-    _id: false,
+    // _id: false,
   }
 );
 

@@ -18,7 +18,7 @@ module.exports = {
     Thought.findOne({ _id: req.params.thoughtId })
       .then((thought) =>
         !thought
-          ? res.status(404).json({ message: "No user with that ID" })
+          ? res.status(404).json({ message: "No thought with that ID" })
           : res.json(thought)
       )
       .catch((err) => {
@@ -53,7 +53,7 @@ module.exports = {
       .then(() => {
         return User.findOneAndUpdate(
           {
-            username: req.body.username,
+            // username: req.body.username,
           },
           { $pull: { thoughts: req.params.thoughtId } },
           { new: true }
@@ -61,13 +61,13 @@ module.exports = {
       })
       .then((user) => {
         !user
-          ? res.status(404).json({ message: "no user with that ID" })
+          ? res.status(404).json({ message: "no thought with that ID" })
           : res.json("Though successfully removed");
       })
       .catch((err) => res.status(500).json(err));
   },
 
-  // Add an a friend
+  // Add a Reaction
   addReaction(req, res) {
     console.log("You are adding an Reaction");
     console.log(req.body);
